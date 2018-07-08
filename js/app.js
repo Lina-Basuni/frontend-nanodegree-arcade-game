@@ -106,8 +106,8 @@ const enemy1=new Enemy(0, 60);
 const enemy2=new Enemy(0, 150);
 const enemy3=new Enemy(0, 235);
 const allEnemies = [enemy1, enemy2, enemy3];
-allEnemies.forEach(function(){
-  if(this.x>=505){
+allEnemies.forEach(function(enemy){
+  if(enemy.x>=505){
     console.log("!!!");
   }
 })
