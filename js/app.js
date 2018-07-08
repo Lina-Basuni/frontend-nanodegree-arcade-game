@@ -10,6 +10,7 @@ class Enemy {
       this.speed = Math.floor(Math.random() * 250 + 1);
       this.x=x;
       this.y=y;
+
     }
 
     // Update the enemy's position, required method for game
@@ -21,10 +22,13 @@ class Enemy {
         this.x+= this.speed*dt;
     }
 
+
     // Draw the enemy on the screen, required method for game
     render() {
         ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
     }
+
+
 }
 
 
@@ -98,13 +102,16 @@ class Player{
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
 // Place the player object in a variable called player
-const allEnemies = [ new Enemy(0, 60), new Enemy(101, 150), new Enemy(202, 235)];
-for(var i = 0; i < 3; i++){
-    var enemyX = (Math.floor (Math.random() * (6 - 1)) + 1) * 101;
-    var enemyY = (Math.floor(Math.random() * (5 - 1)) + 1) * 83;
-    var enemy = new Enemy(enemyX, enemyY);
-    allEnemies.push(enemy);
-}
+const enemy1=new Enemy(0, 60);
+const enemy2=new Enemy(0, 150);
+const enemy3=new Enemy(0, 235);
+const allEnemies = [enemy1, enemy2, enemy3];
+allEnemies.forEach(function(){
+  if(this.x>=505){
+    console.log("!!!");
+  }
+})
+
 
 const player=new Player();
 
