@@ -49,7 +49,47 @@ class Player{
 
   }
 
-  handleInput(){
+
+  handleInput(keyPressed){
+
+      switch(keyPressed){
+        case 'up':
+          if(this.y<=0){
+            return;
+          }
+          else{
+            this.y-=83;
+          }
+          break;
+
+        case 'down':
+        if(this.y>=404){
+          return;
+        }
+        else{
+          this.y+=83;
+        }
+        break;
+
+        case 'left':
+        if(this.x<=0){
+          return;
+        }
+        else{
+          this.x-=101;
+        }
+        break;
+
+        case 'right':
+        if(this.x>=404){
+          return;
+        }
+        else{
+          this.x+=101;
+        }
+        break;
+
+      }
 
   }
 }
@@ -59,6 +99,12 @@ class Player{
 // Place all enemy objects in an array called allEnemies
 // Place the player object in a variable called player
 const allEnemies = [ new Enemy(0, 60), new Enemy(101, 150), new Enemy(202, 235)];
+for(var i = 0; i < 3; i++){
+    var enemyX = (Math.floor (Math.random() * (6 - 1)) + 1) * 101;
+    var enemyY = (Math.floor(Math.random() * (5 - 1)) + 1) * 83;
+    var enemy = new Enemy(enemyX, enemyY);
+    allEnemies.push(enemy);
+}
 
 const player=new Player();
 
