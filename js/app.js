@@ -1,4 +1,5 @@
 // Enemies our player must avoid
+let score = 0;
 class Enemy {
     // Variables applied to each of our instances go here,
     // we've provided one for you to get started
@@ -29,8 +30,9 @@ class Enemy {
           && 30 + player.y > this.y) {
             player.x = 202;
             player.y = 404;
-}
-    }
+            score--;
+        }
+  }
 
     // Draw the enemy on the screen, required method for game
     render() {
@@ -58,6 +60,7 @@ class Player{
     {
       this.x = 202;
       this.y = 404;
+      score++;
     }
 
 
