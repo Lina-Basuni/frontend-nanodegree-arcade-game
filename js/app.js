@@ -1,5 +1,27 @@
 // Enemies our player must avoid
 let score = 0;
+let lifes=5;
+function drawScore() {
+    ctx.font = "16px Arial";
+    ctx.fillStyle = "#0095DD";
+    ctx.fillText("Score: "+score, 8, 20);
+
+}
+function drawLifes(){
+  ctx.font = "16px Arial";
+  ctx.fillStyle = "#0095DD";
+  ctx.fillText("Lifes: "+lifes, 410, 20);
+
+}
+function initGame(){
+  score=0;
+  lifes=5;
+  player.x=202;
+  player.y=404;
+  allEnemies.forEach(function(enemy){
+    enemy.x=0;
+  })
+}
 class Enemy {
     // Variables applied to each of our instances go here,
     // we've provided one for you to get started
@@ -30,13 +52,21 @@ class Enemy {
           && 30 + player.y > this.y) {
             player.x = 202;
             player.y = 404;
-            score--;
+            lifes--;
+        }
+        if(score>=5){
+          initGame
+        }
+        if(lifes<=0){
+          score=0;
         }
   }
 
     // Draw the enemy on the screen, required method for game
     render() {
         ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
+        drawScore();
+        drawLifes();
     }
 
 
@@ -61,6 +91,17 @@ class Player{
       this.x = 202;
       this.y = 404;
       score++;
+    }
+    if(score>=5){
+      alert("YOU WIN!!");
+      initGame();
+    }
+    if(score<0){
+      score=0;
+    }
+    if(lifes<=0){
+      alert("YOU LOST");
+      initGame();
     }
 
 
