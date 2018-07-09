@@ -1,18 +1,24 @@
 // Enemies our player must avoid
-let score = 0;
-let lifes=5;
+let score = 0;//initialize score variable
+let lifes=5;//initialize a lifes variable that decrements at each collision
+
+//function that draws the score on canvas and called from render function
 function drawScore() {
     ctx.font = "16px Arial";
     ctx.fillStyle = "#0095DD";
     ctx.fillText("Score: "+score, 8, 20);
 
 }
+
+//function that draws lifes on the canvas and called from render function
 function drawLifes(){
   ctx.font = "16px Arial";
   ctx.fillStyle = "#0095DD";
   ctx.fillText("Lifes: "+lifes, 410, 20);
 
 }
+
+//an initialize function that gets called everytime user wins or loses
 function initGame(){
   score=0;
   lifes=5;
@@ -22,6 +28,8 @@ function initGame(){
     enemy.x=0;
   })
 }
+
+//an enemy class carrying all enemy properties and functions
 class Enemy {
     // Variables applied to each of our instances go here,
     // we've provided one for you to get started
@@ -43,9 +51,11 @@ class Enemy {
         // which will ensure the game runs at the same speed for
         // all computers.
         this.x+= this.speed*dt;
+        //if condition to handle enemy exceeding boundaries by regenerating it
         if(this.x>=505){
           this.x=0;
         }
+        //collisions checking
         if (player.x < this.x + 60
           && player.x + 37 > this.x
           && player.y < this.y + 25
@@ -54,11 +64,11 @@ class Enemy {
             player.y = 404;
             lifes--;
         }
-        if(score>=5){
-          initGame
-        }
+        //if condition to reset game when lifes is less than 0
+        //and alert lost
         if(lifes<=0){
-          score=0;
+          alert("YOU LOST!!")
+          initGame();
         }
   }
 
@@ -68,8 +78,6 @@ class Enemy {
         drawScore();
         drawLifes();
     }
-
-
 }
 
 
@@ -85,20 +93,29 @@ class Player{
     this.y=404;
 
   }
+  //update function for player
   update(){
+    //if condition that increments score when player reaches water
+    //and resets player's position
     if(this.y<=-26)
     {
       this.x = 202;
       this.y = 404;
       score++;
     }
-    if(score>=5){
+
+    //if condition to alert win when player reaches target score
+    if(score>=10){
       alert("YOU WIN!!");
       initGame();
     }
+
+    //if condition to prevent score from decrementing under 0
     if(score<0){
       score=0;
     }
+
+    //if condition to alert lost when player loses
     if(lifes<=0){
       alert("YOU LOST");
       initGame();
@@ -111,9 +128,8 @@ class Player{
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 
   }
-
-
-
+  //a function called with the arguments as the key pressed
+  //it then checks the value of each key and moves the player accordingly
   handleInput(keyPressed){
 
       switch(keyPressed){
@@ -160,7 +176,6 @@ class Player{
 
 
 // Now instantiate your objects.
-
 // Place all enemy objects in an array called allEnemies
 const enemy1=new Enemy(0, 60);
 const enemy2=new Enemy(0, 146);
