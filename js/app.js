@@ -23,8 +23,14 @@ class Enemy {
         if(this.x>=505){
           this.x=0;
         }
+        if (player.x < this.x + 60
+          && player.x + 37 > this.x
+          && player.y < this.y + 25
+          && 30 + player.y > this.y) {
+            player.x = 202;
+            player.y = 404;
+}
     }
-
 
     // Draw the enemy on the screen, required method for game
     render() {
@@ -48,6 +54,12 @@ class Player{
 
   }
   update(){
+    if(this.y<=-26)
+    {
+      this.x = 202;
+      this.y = 404;
+    }
+
 
   }
 
@@ -55,6 +67,7 @@ class Player{
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 
   }
+
 
 
   handleInput(keyPressed){
@@ -65,16 +78,16 @@ class Player{
             return;
           }
           else{
-            this.y-=83;
+            this.y-=86;
           }
           break;
 
         case 'down':
-        if(this.y>=404){
+        if(this.y>=380){
           return;
         }
         else{
-          this.y+=83;
+          this.y+=86;
         }
         break;
 
@@ -106,14 +119,12 @@ class Player{
 
 // Place all enemy objects in an array called allEnemies
 const enemy1=new Enemy(0, 60);
-const enemy2=new Enemy(0, 150);
-const enemy3=new Enemy(0, 235);
+const enemy2=new Enemy(0, 146);
+const enemy3=new Enemy(0, 232);
 const allEnemies = [enemy1, enemy2, enemy3];
 
 // Place the player object in a variable called player
 const player=new Player();
-
-
 
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method. You don't need to modify this.
