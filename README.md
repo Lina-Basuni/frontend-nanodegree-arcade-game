@@ -1,6 +1,9 @@
 # Frogger Game
 This is a game where you must cross the road to win the game
 
+## How To Run
+This game can be run through the "index.html" file 
+
 ## How To Play
 You try crossing the road with the player using the arrow keys
 If you crash into a bug you lose a life and player is repositioned at initial position

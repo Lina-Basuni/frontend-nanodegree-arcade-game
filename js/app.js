@@ -18,16 +18,6 @@ function drawLifes(){
 
 }
 
-//an initialize function that gets called everytime user wins or loses
-function initGame(){
-  score=0;
-  lifes=5;
-  player.x=202;
-  player.y=404;
-  allEnemies.forEach(function(enemy){
-    enemy.x=0;
-  })
-}
 
 //an enemy class carrying all enemy properties and functions
 class Enemy {
@@ -64,12 +54,6 @@ class Enemy {
             player.y = 404;
             lifes--;
         }
-        //if condition to reset game when lifes is less than 0
-        //and alert lost
-        if(lifes<=0){
-          alert("YOU LOST!!")
-          initGame();
-        }
   }
 
     // Draw the enemy on the screen, required method for game
@@ -93,6 +77,18 @@ class Player{
     this.y=404;
 
   }
+
+  //an initialize function that gets called everytime user wins or loses
+  initGame(){
+    score=0;
+    lifes=5;
+    player.x=202;
+    player.y=404;
+    allEnemies.forEach(function(enemy){
+      enemy.x=0;
+    })
+  }
+
   //update function for player
   update(){
     //if condition that increments score when player reaches water
@@ -107,7 +103,7 @@ class Player{
     //if condition to alert win when player reaches target score
     if(score>=10){
       alert("YOU WIN!!");
-      initGame();
+      this.initGame();
     }
 
     //if condition to prevent score from decrementing under 0
@@ -118,7 +114,7 @@ class Player{
     //if condition to alert lost when player loses
     if(lifes<=0){
       alert("YOU LOST");
-      initGame();
+      this.initGame();
     }
 
 
