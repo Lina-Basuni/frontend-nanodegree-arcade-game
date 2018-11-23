@@ -1,6 +1,8 @@
 # Frogger Game
 This is a game where you must cross the road to win the game
 
+Try it Here>> https://lina-basuni.github.io/frontend-nanodegree-arcade-game/
+
 ## How To Run
 This game can be run through the "index.html" file 
 
